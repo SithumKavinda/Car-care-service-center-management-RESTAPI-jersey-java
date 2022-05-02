@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class DBConnect {
 	private static String url = "jdbc:mysql://localhost:3306/electrogrid";
 	private static String un = "root";
-	private static String pw = "";
+	private static String pw = "Apple@2022";
 	private static Connection con;
 	
 	public static Connection getConnection() {
