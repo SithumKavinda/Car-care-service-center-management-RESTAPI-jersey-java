@@ -26,7 +26,8 @@ public class CategoryDAO {
 			}
 
 			// Prepare the html table to be displayed
-			output = "<table border='1'><tr><th>Category ID</th><th>Category Name</th>" + "<th>Fixed Charge</th>"
+			output = "<table class=\"table table-dark bg-opacity-10 table-striped\" border='1'><tr><th>Category ID</th><th>Category Name</th>"
+					+ "<th>Fixed Charge</th>"
 					+ "<th>Unit Charge</th>" + "<th>Tax Amount</th>" + "<th>Relief</th>"
 					+ "<th>EDIT</th><th>REMOVE</th></tr>";
 
@@ -53,7 +54,10 @@ public class CategoryDAO {
 				output += "<td>" + relief + "</td>";
 
 				// buttons
-				output += "<td><input name='btnUpdate' type='button' value='EDIT' class='btn btn-secondary'></td>"
+				output += "<td><form method=\"get\" action=\"#\">"
+						+ "<input name='btnUpdate' type='submit' value='EDIT' class='btn btn-secondary'></td>"
+						+ "<input name='itemID' type='hidden' value='" + catID + "'>"
+						+ "</form></td>"
 						+ "<td><form method='post' action='items.jsp'>"
 						+ "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>"
 						+ "<input name='itemID' type='hidden' value='" + catID + "'>" + "</form></td></tr>";
@@ -149,35 +153,35 @@ public class CategoryDAO {
 
 	// Delete Method
 	public String deleteCategory(String categoryID) {
-		
+
 		String output = "";
-		
+
 		try {
-			
+
 			con = DBConnect.getConnection();
-			
+
 			if (con == null) {
 				return "Error while connecting to the database for deleting.";
 			}
-			
+
 			// create a prepared statement
 			String query = "DELETE FROM `category` WHERE categoryID=?";
 			pst = con.prepareStatement(query);
-			
+
 			// binding values
 			pst.setInt(1, Integer.parseInt(categoryID));
-			
+
 			// execute the statement
 			pst.execute();
 			con.close();
-			
+
 			output = "Deleted successfully";
-			
+
 		} catch (Exception e) {
 			output = "Error while deleting the item.";
 			System.err.println(e.getMessage());
 		}
-		
+
 		return output;
 	}
 

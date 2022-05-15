@@ -1,0 +1,22 @@
+* {
+  /* border: 1px solid black; */
+  transition: 500ms;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+th {
+  text-align: center;
+}
+
+td {
+  text-align: center;
+}
